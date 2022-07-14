@@ -20,7 +20,7 @@ $ pip install mechanize
 
 # Run
 
-$ rm -rf S-A-L
+$ rm -rf BRAITON 
 
 $ git clone https://github.com/BRAITON-KARADAG/BRAITON.git
 
